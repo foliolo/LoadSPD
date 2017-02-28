@@ -10,11 +10,16 @@ namespace LoadSPD
     {
         public String Name { get; set; }
         public String Expiracy { get; set; }
+        public long ExpiracyMilisec { get; set; }
 
         public Paciente (String Name, String Expiracy)
         {
             this.Name = Name;
             this.Expiracy = Expiracy;
+
+            DateTime dateValue;
+            DateTime.TryParse(Expiracy, out dateValue);
+            this.ExpiracyMilisec = dateValue.Ticks;
         }
     }
 }

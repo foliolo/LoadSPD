@@ -19,7 +19,6 @@ namespace LoadSPD
             SubidaFirebase().Wait();
 
             Console.WriteLine("Pulsa para salir...");
-            Console.Read();
         }
 
      
@@ -57,12 +56,7 @@ namespace LoadSPD
             // delete entire conversation list
             await client.Child("pacientes").DeleteAsync();
             // load data
-            await client.Child("lista_pacientes").PutAsync(pacientes);
-
-            foreach (Paciente paciente in pacientes)
-            {
-                await client.Child("pacientes").Child(paciente.Name).PutAsync(paciente.Expiracy);
-            }
+            await client.Child("pacientes").PutAsync(pacientes);
 
             client.Child("pacientes").Dispose();
         }
